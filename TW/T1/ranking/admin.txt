@@ -1,0 +1,12 @@
+{"ranking":[
+{"nick":"admin","victories":311,"games":537},
+{"nick":"admin2","victories":210,"games":419},
+{"nick":"tiago","victories":196,"games":369},
+{"nick":"Joao","victories":174,"games":255},
+{"nick":"abc","victories":154,"games":249},
+{"nick":"def","victories":153,"games":236},
+{"nick":"asdf","victories":142,"games":249},
+{"nick":"123","victories":116,"games":191},
+{"nick":"456","victories":103,"games":178},
+{"nick":"tw","victories":102,"games":214}
+]}

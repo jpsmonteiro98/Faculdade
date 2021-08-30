@@ -1,0 +1,45 @@
+#tabuleiro {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-width: 5px;
+  padding: 5px;
+  height: 770px;
+  clear: both;
+}
+
+#jogo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: outset;
+  border-width: 2.5px;
+  padding: 5px;
+  margin: 10px;
+  background-color: seagreen;
+  width: 1070px;
+  height: 500px;
+  font-size: 120px;
+  color: black;
+  font-weight: bold;
+}
+
+.visor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-style: outset;
+  border-width: 2.5px;
+  padding: 5px;
+  background-color: seagreen;
+  height: 130px;
+  width: 1070px;
+  font-size: 120px;
+  color: black;
+  font-weight: bold;
+}
+
+#distancia {
+  margin-top: 10px;
+}

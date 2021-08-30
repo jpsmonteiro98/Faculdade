@@ -1,0 +1,93 @@
+html {
+  color: -internal-root-color;
+}
+
+body {
+  background-image: url("domino.jpg");
+  background-repeat: no-repeat;
+  color: white;
+  font-family: time;
+  font-size: 12.5pt;
+  line-height: 1.5;
+  word-spacing: 1mm;
+}
+
+h1 {
+  color: dodgerblue;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  font-family: time;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  font-variant: small-caps;
+  font-size: 40pt;
+  line-height: 1.5;
+  word-spacing: 1mm;
+}
+
+p {
+  font-weight: bold;
+  color: dodgerblue;
+  font-size: 12.5pt;
+}
+
+select, button {
+  margin-right: 5px;
+}
+
+img {
+  margin-right: 5px;
+  width: 25px;
+  height: 25px;
+}
+
+table, td {
+  border: 1px solid black;
+}
+
+.window {
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 5%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  background-color: #fefefe;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%;
+  border-radius: 15px;
+  animation: fadein 1s;
+}
+
+.bt1{
+  background-color: #39475e;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: auto;
+  display:block;
+  cursor: pointer;
+  padding: 10px;
+}
+
+h2{
+  background-color: #39475e;
+  color: white;
+  font-size: 22px;
+  text-align: center;
+}

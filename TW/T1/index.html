@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <title> Domino </title>
+
+  <link rel="stylesheet" href="configuration.css">
+  <link rel="stylesheet" href="buttons.css">
+  <link rel="stylesheet" href="game.css">
+</head>
+
+<body onload="show()">
+  <div id="authentication">
+    <div id="popup" class="window">
+      <div class="content">
+        <h2> Authentication </h2>
+        <p> Username </p>
+        <input id="loguser" type=text>
+        <p> Password </p>
+        <input id="logpasswd" type=password>
+        <button class="bt1" id="loginbtn"> Login </button>
+      </div>
+    </div>
+  </div>
+
+<h1> Domino Game </h1>
+
+<div class="options">
+  <button id="btn"> Rules </button>
+  <div id="box" class="box">
+    <div class="box_content">
+      <span class="close"> &times; </span>
+      <p> Peças do dominó </p>
+      <ul>
+        <li> Cada peça é retangular, com 2 partes quadradas. </li>
+        <li> Cada quadrado tem um valor de 0 a 6 representado por pontos. </li>
+        <li> Existem todas as combinações possíveis de 2 valores de 0 a 6. </li>
+        <li> Não existem peças repetidas. </li>
+        <li> No total há exatamente 28 peças. </li>
+      </ul>
+
+      <p> Jogo </p>
+      <ul>
+        <li> No início do jogo as peças são baralhadas e depois são distribuídas em 3 grupos:
+          <ul>
+            <li> mão do jogador com 7 peças; </li>
+            <li> mão do oponente com 7 peças; </li>
+            <li> monte com as restantes 14 peças. </li>
+          </ul>
+        </li>
+        <li> Quem tem a peça de valor mais alto inicia o jogo e coloca-a no centro do tabuleiro. </li>
+        <li> Durante o jogo os jogadores jogam alternadamente. </li>
+        <li> Peças jogadas formam uma fila. </li>
+        <li> Cada peça nova é colocada numa das extremidades da fila. </li>
+        <li> Valor de duas peças justapostas tem de ser o mesmo. </li>
+      </ul>
+
+      <p> Monte </p>
+      <ul>
+        <li> Se um jogador não tiver peça para jogar tem ir ao monte e vai retirando peças do monte até que o possa jogar. </li>
+        <li> Não havendo peças no monte o jogador pode passar a sua vez. </li>
+        <li> Só com o monte vazio é que se pode passar. </li>
+      </ul>
+
+      <p> Fim do Jogo </p>
+      <ul>
+        <li> O jogo termina quando um jogador ficar sem peças ou se o jogo está fechado e nenhum jogador poder jogar. </li>
+        <li> O jogo está fechado se o mesmo valor está em ambas as estremidades ou esse valor aparecer nas peças 7 vezes. </li>
+        <li> Ganha o jogador com menor número de pontos em mão. </li>
+        <li> Os pontos são a soma dos pares de valores das suas peças. </li>
+      </ul>
+    </div>
+  </div>
+
+  <button onclick="distribuir_jogar()" id="PXP"> Player vs Player </button>
+
+  <button id="btn_2"> Ranking </button>
+  <div id="box_2" class="box">
+    <div class="box_content">
+      <span class="close_2"> &times; </span>
+      <table id="rkg"> </table>
+    </div>
+  </div>
+</div>
+
+<div id="tabuleiro">
+  <div class="visor" id="distancia">
+    <div id="player_2"> </div>
+  </div>
+  <div id="jogo">
+    <div> </div>
+  </div>
+  <div class="visor">
+    <div id="anonymous_2"> </div>
+  </div>
+</div>
+
+<div class="options">
+  <img id="btn_3" src="pause.png" alt="Pausar">
+  <div id="box_3" class="box">
+    <div class="box_content_2">
+      <span class="close_3"> PAUSED GAME (&times;) </span>
+    </div>
+  </div>
+
+  <img id="btn_4" src="quit.png" alt="Desistir">
+  <div id="box_4" class="box">
+    <div class="box_content_2">
+      <span class="close_4"> YOU GAVE UP THE GAME! </span>
+    </div>
+  </div>
+</div>
+
+<script src="buttons.js"> </script>
+<script src="game.js"> </script>
+<script src="server.js"> </script>
+
+</body>
+
+</html>

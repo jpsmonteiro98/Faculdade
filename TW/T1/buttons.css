@@ -1,0 +1,89 @@
+.options {
+  display: flex;
+  padding: 5px;
+  float: right;
+}
+
+.box {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+}
+
+.box_content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 5px;
+  width: 45%;
+  color: black;
+  font-size: 11.5pt;
+}
+
+.box_content_2 {
+  margin: auto;
+  display: block;
+  width: 50%;
+  max-width: 400px;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close_2 {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close_3 {
+  position: absolute;
+  top: 500px;
+  bottom: 500px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.close_4 {
+  position: absolute;
+  top: 500px;
+  bottom: 500px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.close:hover, .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.close_2:hover, .close_2:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.close_3:hover, .close_3:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.começar {
+  margin-bottom: 5px;
+}
