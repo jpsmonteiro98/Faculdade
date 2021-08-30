@@ -1,0 +1,1 @@
+Na pasta do programa, executar o seguinte comando "javac ConnectFour.java && java ConnectFour"

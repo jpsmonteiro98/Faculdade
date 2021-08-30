@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>Fifteen Puzzle Optimal Solver</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../../math/style.css" type="text/css">
+<style type="text/css">
+<!--
+.style1 {color: #0000FF}
+.style2 {color: #FF0000}
+-->
+</style>
+</head>
+
+
+<body>
+<table width="789" border="0" cellpadding="20" cellspacing="20">
+  <tr> 
+    <td width="689" valign="top" bgcolor="#E7E9FA" height="79"> 
+    <img src="../../pics/de.gif" width="20" height="12"> <a href="15solver.html">Deutsche Version </a><img src="../../pics/de.gif" width="20" height="12">
+    <div align="center">
+      <h1>15-Puzzle Optimal Solver</h1>
+  </div>  </tr>
+  
+  
+ <tr> 
+    <td width="689" valign="top" bgcolor="#E7E9FA" height="77"><table width="697" border="0" cellpadding="4">
+      <tr>
+        <td width="262" ><img src="pics/puz.jpg" width="262" height="262" /></td>
+        <td width="419" ><p>The solved state of the 15-puzzle can be reached from any solvable position within 80 moves or less. Exchanging two arbitrary tiles of a solvable position leads to an unsolvable position. There are 16!/2 = 10,461,394,944,000 different solvable positions.</p>
+          <p>Korf  was able to compute the number of states as a function of the depth in 2005.</p></td>
+      </tr>
+    </table></td>
+ </tr>
+  <tr> 
+    <td valign="top" bgcolor="#E7E9FA" height="1061"> 
+      <table width="515" align="center" cellpadding="0" cellspacing="3">
+        <col width="80" />
+        <col width="144" />
+        <col width="154" />
+        <col width="243" />
+        <tr height="20">
+          <td height="20"><div align="center">depth</div></td>
+          <td><div align="center">states</div></td>
+          <td><div align="center">depth</div></td>
+          <td><div align="center">states</div></td>
+        </tr>
+        <tr height="20">
+          <td width="53" height="20" align="center"><div align="right">0</div></td>
+          <td width="148"><div align="right">1</div></td>
+          <td width="49"><div align="right">41</div></td>
+          <td width="263"><div align="right">83,099,401,368</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">1</div></td>
+          <td><div align="right">2</div></td>
+          <td><div align="right">42</div></td>
+          <td><div align="right">115,516,106,664</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">2</div></td>
+          <td><div align="right">4</div></td>
+          <td><div align="right">43</div></td>
+          <td><div align="right">156,935,291,234</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">3</div></td>
+          <td><div align="right">10</div></td>
+          <td><div align="right">44</div></td>
+          <td><div align="right">208,207,973,510</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">4</div></td>
+          <td><div align="right">24</div></td>
+          <td><div align="right">45</div></td>
+          <td><div align="right">269,527,755,972</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">5</div></td>
+          <td><div align="right">54</div></td>
+          <td><div align="right">46</div></td>
+          <td><div align="right">340,163,141,928</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">6</div></td>
+          <td><div align="right">107</div></td>
+          <td><div align="right">47</div></td>
+          <td><div align="right">418,170,132,006</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">7</div></td>
+          <td><div align="right">212</div></td>
+          <td><div align="right">48</div></td>
+          <td><div align="right">500,252,508,256</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">8</div></td>
+          <td><div align="right">446</div></td>
+          <td><div align="right">49</div></td>
+          <td><div align="right">581,813,416,256</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">9</div></td>
+          <td><div align="right">946</div></td>
+          <td><div align="right">50</div></td>
+          <td><div align="right">657,076,739,307</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">10</div></td>
+          <td><div align="right">1,948</div></td>
+          <td><div align="right">51</div></td>
+          <td><div align="right">719,872,287,190</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">11</div></td>
+          <td><div align="right">3,938</div></td>
+          <td><div align="right">52</div></td>
+          <td><div align="right">763,865,196,269</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">12</div></td>
+          <td><div align="right">7,808</div></td>
+          <td><div align="right">53</div></td>
+          <td><div align="right">784,195,801,886</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">13</div></td>
+          <td><div align="right">15,544</div></td>
+          <td><div align="right">54</div></td>
+          <td><div align="right">777,302,007,562</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">14</div></td>
+          <td><div align="right">30,821</div></td>
+          <td><div align="right">55</div></td>
+          <td><div align="right">742,946,121,222</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">15</div></td>
+          <td><div align="right">60,842</div></td>
+          <td><div align="right">56</div></td>
+          <td><div align="right">683,025,093,505</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">16</div></td>
+          <td><div align="right">119,000</div></td>
+          <td><div align="right">57</div></td>
+          <td><div align="right">603,043,436,904</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">17</div></td>
+          <td><div align="right">231,844</div></td>
+          <td><div align="right">58</div></td>
+          <td><div align="right">509,897,148,964</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">18</div></td>
+          <td><div align="right">447,342</div></td>
+          <td><div align="right">59</div></td>
+          <td><div align="right">412,039,723,036</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">19</div></td>
+          <td><div align="right">859,744</div></td>
+          <td><div align="right">60</div></td>
+          <td><div align="right">317,373,604,363</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">20</div></td>
+          <td><div align="right">1,637,383</div></td>
+          <td><div align="right">61</div></td>
+          <td><div align="right">232,306,415,924</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">21</div></td>
+          <td><div align="right">3,098,270</div></td>
+          <td><div align="right">62</div></td>
+          <td><div align="right">161,303,043,901</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">22</div></td>
+          <td><div align="right">5,802,411</div></td>
+          <td><div align="right">63</div></td>
+          <td><div align="right">105,730,020,222</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">23</div></td>
+          <td><div align="right">10,783,780</div></td>
+          <td><div align="right">64</div></td>
+          <td><div align="right">65,450,375,310</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">24</div></td>
+          <td><div align="right">19,826,318</div></td>
+          <td><div align="right">65</div></td>
+          <td><div align="right">37,942,606,582</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">25</div></td>
+          <td><div align="right">36,142,146</div></td>
+          <td><div align="right">66</div></td>
+          <td><div align="right">20,696,691,144</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">26</div></td>
+          <td><div align="right">65,135,623</div></td>
+          <td><div align="right">67</div></td>
+          <td><div align="right">10,460,286,822</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">27</div></td>
+          <td><div align="right">116,238,056</div></td>
+          <td><div align="right">68</div></td>
+          <td><div align="right">4,961,671,731</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">28</div></td>
+          <td><div align="right">204,900,019</div></td>
+          <td><div align="right">69</div></td>
+          <td><div align="right">2,144,789,574</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">29</div></td>
+          <td><div align="right">357,071,928</div></td>
+          <td><div align="right">70</div></td>
+          <td><div align="right">868,923,831</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">30</div></td>
+          <td><div align="right">613,926,161</div></td>
+          <td><div align="right">71</div></td>
+          <td><div align="right">311,901,840</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">31</div></td>
+          <td><div align="right">1,042,022,040</div></td>
+          <td><div align="right">72</div></td>
+          <td><div align="right">104,859,366</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">32</div></td>
+          <td><div align="right">1,742,855,397</div></td>
+          <td><div align="right">73</div></td>
+          <td><div align="right">29,592,634</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">33</div></td>
+          <td><div align="right">2,873,077,198</div></td>
+          <td><div align="right">74</div></td>
+          <td><div align="right">7,766,947</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">34</div></td>
+          <td><div align="right">4,660,800,459</div></td>
+          <td><div align="right">75</div></td>
+          <td><div align="right">1,508,596</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">35</div></td>
+          <td><div align="right">7,439,530,828</div></td>
+          <td><div align="right">76</div></td>
+          <td><div align="right">272,198</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">36</div></td>
+          <td><div align="right">11,668,443,776</div></td>
+          <td><div align="right">77</div></td>
+          <td><div align="right">26,638</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">37</div></td>
+          <td><div align="right">17,976,412,262</div></td>
+          <td><div align="right">78</div></td>
+          <td><div align="right">3,406</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">38</div></td>
+          <td><div align="right">27,171,347,953</div></td>
+          <td><div align="right">79</div></td>
+          <td><div align="right">70</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">39</div></td>
+          <td><div align="right">40,271,406,380</div></td>
+          <td><div align="right">80</div></td>
+          <td><div align="right">17</div></td>
+        </tr>
+        <tr height="20">
+          <td height="20" align="center"><div align="right">40</div></td>
+          <td><div align="right">58,469,060,820</div></td>
+          <td><div align="right"></div></td>
+          <td><div align="right"></div></td>
+        </tr>
+      </table>
+      <p>Korf, R., and Schultze, P. 2005. Large-scale parallel breadth-first search. In Proceedings of the 20th National Conference on Artificial Intelligence (AAAI-05), 1380–1385.</p>
+      <p align="center"><br>
+      <img src="pics/distrib.jpg" width="758" height="284" /></p>
+    <p align="center">The expected value for the solving length is 52.59. </p></td>
+  </tr>
+<tr> 
+    <td valign="top" bgcolor="#E7E9FA" height="341">      <p>The 17 positions which need 80 moves are</p>
+      <table width="200" border="1" align="center">
+        <tr>
+          <td><img src="pics/a1.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a2.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a3.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a4.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a5.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a6.jpg" width="80" height="80" /></td>
+        </tr>
+        <tr>
+          <td><img src="pics/a7.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a8.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a9.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a10.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a11.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a12.jpg" width="80" height="80" /></td>
+        </tr>
+        <tr>
+          <td height="84"><img src="pics/a13.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a14.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a15.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a16.jpg" width="80" height="80" /></td>
+          <td><img src="pics/a17.jpg" width="80" height="80" /></td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>    </td>
+</tr>
+  <tr> 
+    <td valign="top" bgcolor="#E7E9FA" height="89"> 
+      <p align="left">To find one or all optimal solutions, we do an <a href="http://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search">iterative deepening depth-first search</a>. Using a heuristic which gives a lower estimate of the number of moves to solve the puzzle allows tree pruning (<a href="http://en.wikipedia.org/wiki/IDA*">IDA*</a>)</p>
+      <p align="left">You can choose between several different heuristics:</p>
+      <ul>
+        <li>Manhattan Distance: For each tile the number of grid units between its current location and its goal location are counted and the values for all tiles are summed up. This heuristic is easy to compute but it is not very powerful.<br />
+          <br />
+        </li>
+        <li>Walking Distance: Considerably more powerful than the Manhattan Distance while not using much memory. Developed by Ken'ichiro Takahashi, see<a href="http://www.ic-net.or.jp/home/takaken/e/15pz/index.html"> his website</a> for details.<br />
+          <br />
+        </li>
+        <li>Pattern Databases:  The 78 Pattern Database heuristic takes a lot of memory but solves a random instance of the puzzle within a few milliseconds on average. An optimal solution to the 80 moves antipodes takes a few seconds each.<br />
+          <a href="https://www.aaai.org/Papers/JAIR/Vol22/JAIR-2209.pdf">Felner, Ariel, Korf, Richard E., Hanan, Sarit, Additive Pattern Database Heuristics, Journal of Artificial Intelligence Research 22 (2004) 279-318</a></li>
+      </ul>      
+      <p>Generating 1000 random positions led to the following average performance (Intel(R) Core(TM)i7 CPU 920@2.67 GHz, 1 core), in ms/position:</p>
+      <p>Manhattan Distance: <span class="style1">25600</span>, Walking Distance(WD): <span class="style1">1890</span>, 555-Pattern Database(PDB): <span class="style1">370</span><br />
+        555-PDB + WD: <span class="style1">200</span>, 663-PDB: <span class="style1">160</span>, 663-PDB+WD: <span class="style1">120</span>, 78-PDB: <span class="style1">5</span></p>
+      <p>I hope the features of the program are almost self-explanatory. <span class="style2">You can use drag and drop with the left or right mouse button to swap tiles</span>.</p>
+    <p align="left"><img src="pics/solver.jpg" width="783" height="525" /></p>
+    <h1 align="left"><br />
+      Downloads:</h1>
+    <p align="center"><a href="fifteenpuzzle64.zip">64-bit program (Windows), usually the best choice</a></p>
+    <p align="center"><a href="fifteenpuzzle32.zip">32-bit program (Windows)</a></p>
+    <p align="center"><a href="https://github.com/hkociemba/FifteenPuzzle">Borland C++ Sourcecode on GitHub</a></p></td>
+  </tr>
+  
+  <tr> 
+    <td width="689" valign="top" bgcolor="#E7E9FA" height="170"><p>Did you notice that the arrangement of numbers in the 15-puzzle shown above has an interesting property?</p>
+      <p>The numbers in the rows, columns and both main diagonals all add up to 30.<br />
+      Such an arrangement is called a <a href="http://en.wikipedia.org/wiki/Magic_square">Magic Square</a>. There are 7040 different Magic Squares, but only 3520 of them can be solved with the blank in the lower right corner - as shown at the top of the page. The one shown above is the<strong> only one which is solvable within 35 moves</strong> and there are no Magic Squares which are solvable with fewer moves.</p>
+    </tr>
+ <tr> 
+    <td width="689" valign="top" bgcolor="#E7E9FA" height="94"><p>&lt; <a href="../../index.html">Home</a> &gt;</p>
+      <p align="center"><font size = "-1">&copy; 2018 <img src="../../gomail.gif" width="15" height="10" />&nbsp;<a href="mailto:kociemba@t-online.de"><b>Herbert 
+        Kociemba</b></a></font></p>
+    </tr> 
+</table>
+</body>
+</html>

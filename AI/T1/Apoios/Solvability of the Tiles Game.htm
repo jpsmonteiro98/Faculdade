@@ -1,0 +1,585 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Solvability of the Tiles Game</title>
+  <link type="text/css" rel="stylesheet" href="java2.css">
+</head>
+<body style="background-color: rgb(255, 255, 255);">
+<center>
+<font color="#000000" size="+1">THE UNIVERSITY OF BIRMINGHAM<br>
+School of Computer Science
+</font>
+<div class="titleBox"><b>Software Workshop Java</b><br>
+Solvability of the Tiles Game<br>
+<p><font color="#000000">Mark Ryan</font></p>
+</div>
+</center>
+<font color="#000000"><font><br>
+</font></font>
+<h1><font color="#000000"><font>Tiles Game<br>
+</font></font></h1>
+<p><font color="#000000">This well-known puzzle, often referred to as
+the 'Puzzle of Fifteen', became popular in America during
+the 1870s. The puzzle consists of fifteen square tiles, labelled
+numerically from 1 to 15. They are arranged in a random ordering within
+a square tray that is just large enough to hold sixteen tiles in a 4 x
+4 grid (see <i>fig. 1</i>). The tiles should then be slid around the
+tray until they are in the correct ordering as shown in <i>fig. 2</i>,
+with the blank space at the bottom-right hand corner. The tiles must
+not be picked out of the tray.</font></p>
+<p><font color="#000000">
+<table align="center" cellpadding="5">
+  <tbody>
+    <tr>
+      <td>
+      <table border="2">
+        <caption valign="bottom" align="bottom"><i><font size="-1">fig 1<br>
+        <br>
+        </font></i></caption> <tbody>
+          <tr>
+            <td style="text-align: center;">6 </td>
+            <td style="text-align: center;">1 </td>
+            <td style="text-align: center;">10</td>
+            <td style="text-align: center;">2 </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">7 </td>
+            <td style="text-align: center;">11</td>
+            <td style="text-align: center;">4 </td>
+            <td style="text-align: center;">14</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">5 </td>
+            <td style="text-align: center;">&nbsp; </td>
+            <td style="text-align: center;">9 </td>
+            <td style="text-align: center;">15</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">8 </td>
+            <td style="text-align: center;">12</td>
+            <td style="text-align: center;">13</td>
+            <td style="text-align: center;">3 </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table border="2">
+        <caption valign="bottom" align="bottom"><i><font size="-1">fig
+2: <br>
+Solution</font></i></caption> <tbody>
+          <tr>
+            <td style="text-align: center;">1 </td>
+            <td style="text-align: center;">2 </td>
+            <td style="text-align: center;">3 </td>
+            <td style="text-align: center;">4 </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">5 </td>
+            <td style="text-align: center;">6 </td>
+            <td style="text-align: center;">7 </td>
+            <td style="text-align: center;">8 </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">9 </td>
+            <td style="text-align: center;">10</td>
+            <td style="text-align: center;">11</td>
+            <td style="text-align: center;">12</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">13</td>
+            <td style="text-align: center;">14</td>
+            <td style="text-align: center;">15</td>
+            <td style="text-align: center;">&nbsp; </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td style="vertical-align: top;"><font color="#000000">
+      <table border="2">
+        <caption valign="bottom" align="bottom"><i><font size="-1">fig
+3: Unsolvable</font></i></caption> <tbody>
+          <tr>
+            <td style="text-align: center;">1 </td>
+            <td style="text-align: center;">2 </td>
+            <td style="text-align: center;">3 </td>
+            <td style="text-align: center;">4 </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">5 </td>
+            <td style="text-align: center;">6 </td>
+            <td style="text-align: center;">7 </td>
+            <td style="text-align: center;">8 </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">9 </td>
+            <td style="text-align: center;">10</td>
+            <td style="text-align: center;">11</td>
+            <td style="text-align: center;">12</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">13</td>
+            <td style="text-align: center;">15</td>
+            <td style="text-align: center;">14</td>
+            <td style="text-align: center;">&nbsp; </td>
+          </tr>
+        </tbody>
+      </table>
+      </font></td>
+    </tr>
+  </tbody>
+</table>
+</font></p>
+<span style="font-weight: bold;"><br>
+</span>Not all configurations are solvable. For example, the
+configuration in which the last two tiles are swapped (<span
+ style="font-style: italic;">fig. </span>3) is not solvable.<br>
+<br>
+<h1>Formula for determining solvability</h1>
+<font color="#000000">There is a method to check whether any given game
+state is
+solvable. First, consider the tiles written out in a row, like this:<br>
+</font><br>
+<p><font color="#000000">
+<table align="center" cellpadding="5">
+  <tbody>
+    <tr>
+      <td>
+      <table border="2">
+        <caption valign="bottom" align="bottom"><i><font size="-1">fig 4<br>
+        <br>
+        </font></i></caption> <tbody>
+          <tr>
+            <td style="text-align: center;">12 <br>
+            </td>
+            <td style="text-align: center;">1 </td>
+            <td style="text-align: center;">10</td>
+            <td style="text-align: center;">2 </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">7 </td>
+            <td style="text-align: center;">11</td>
+            <td style="text-align: center;">4 </td>
+            <td style="text-align: center;">14</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">5 </td>
+            <td style="text-align: center;">&nbsp; </td>
+            <td style="text-align: center;">9 </td>
+            <td style="text-align: center;">15</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">8 </td>
+            <td style="text-align: center;">13</td>
+            <td style="text-align: center;">6</td>
+            <td style="text-align: center;">3 </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>
+      <table border="2">
+        <caption valign="bottom" align="bottom"><i><font size="-1">fig
+5: <br>
+Tiles written in a row</font></i></caption> <tbody>
+          <tr>
+            <td style="text-align: center;">12</td>
+            <td style="text-align: center;">1 <br>
+            </td>
+            <td style="text-align: center;">10 <br>
+            </td>
+            <td style="text-align: center;">2 <br>
+            </td>
+            <td style="vertical-align: top;">7<br>
+            </td>
+            <td style="vertical-align: top;">11<br>
+            </td>
+            <td style="vertical-align: top;">4<br>
+            </td>
+            <td style="vertical-align: top;">14<br>
+            </td>
+            <td style="vertical-align: top;">5<br>
+            </td>
+            <td style="vertical-align: top;">&nbsp;&nbsp; <br>
+            </td>
+            <td style="vertical-align: top;">9<br>
+            </td>
+            <td style="vertical-align: top;">15<br>
+            </td>
+            <td style="vertical-align: top;">8<br>
+            </td>
+            <td style="vertical-align: top;">13</td>
+            <td style="vertical-align: top;">6</td>
+            <td style="vertical-align: top;">3<br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td style="vertical-align: top;"><font color="#000000"><br>
+      </font></td>
+    </tr>
+  </tbody>
+</table>
+</font></p>
+<span style="font-weight: bold;"><br>
+</span><font color="#000000">An
+inversion is when a tile precedes another tile with a lower number on
+it. The solution state has zero inversions. For example, if, in a 4 x 4
+grid, number 12 is top left, then there will be 11 inversions from this
+tile, as numbers 1-11 come after it. To explain it another way, an
+inversion is a pair of tiles (a,b) such that a appears before b, but
+a&gt;b. </font>C<font color="#000000">ount the number of inversions in
+the grid. For example, on the grid of fig.4:<br>
+</font>
+<ul>
+  <li><font color="#000000">the 12 gives us 11 inversions</font></li>
+  <li><font color="#000000">the 1 gives us none</font></li>
+  <li><font color="#000000">the 10 gives us 8 inversions</font></li>
+  <li><font color="#000000">the 2 gives us none</font></li>
+  <li><font color="#000000">the 7 gives us 4 inversions</font></li>
+  <li><font color="#000000">the 11 gives us 6 inversions</font></li>
+  <li><font color="#000000">the 4 gives us one inversion<br>
+    </font></li>
+  <li><font color="#000000">the&nbsp; 14 gives us 6<br>
+    </font></li>
+  <li><font color="#000000">the 5 gives us one</font></li>
+  <li><font color="#000000">the 9 gives us 3</font></li>
+  <li><font color="#000000">the 15 gives us 4</font></li>
+  <li><font color="#000000">the 8 gives us 2<br>
+    </font></li>
+  <li><font color="#000000">2 from the 13</font></li>
+  <li><font color="#000000">one from the 6</font></li>
+</ul>
+So there are 49 inversions in this example.<br>
+<br>
+The formula says:<br>
+<font color="#000000">
+<ol type="a">
+  <li>If the grid width is odd, then the number of inversions in a
+solvable situation is even. </li>
+  <li>If the grid width is even, and the blank is on an even row
+counting from the bottom (second-last, fourth-last etc), then the
+number of inversions in a solvable
+situation is odd. </li>
+  <li>If the grid width is even, and the blank is on an odd row
+counting from the bottom
+(last, third-last, fifth-last etc) then the number of inversions in a
+solvable
+situation is even. </li>
+</ol>
+</font>That gives us this formula for determining solvability:<br>
+<br>
+( (grid width odd) <code>&amp;&amp;</code> (#inversions even) )&nbsp; <code>||</code>&nbsp;
+( (grid width even) <code>&amp;&amp;</code> ((blank on odd row from
+bottom) <code>==</code> (#inversions even)) )<br>
+<br>
+<h1>Why is that formula correct?</h1>
+<br>
+Definition: the <span style="font-style: italic;">polarity</span> of a
+number is whether the number is even or odd.<br>
+<br>
+<big><big style="color: rgb(51, 51, 255);"><span
+ style="color: rgb(204, 0, 0);">Fact 1: </span>For a grid of odd
+width, the polarity of the number of inversions is invariant. That
+means: all legal moves preserve the polarity of the number of
+inversions.</big><br>
+</big><br>
+Example<font color="#000000">: consider the move below. </font><font
+ color="#000000">The number of inversions on the left is 11, an odd
+number. By moving the 3 up, the 9 and the 8 both lose an inversion.
+So the result has 9 inversions, which is still odd.<br>
+</font><br>
+<p><font color="#000000">
+<table align="center" cellpadding="5">
+  <tbody>
+    <tr>
+      <td>
+      <table border="2">
+        <caption valign="bottom" align="bottom"><i><font size="-1">11
+inversions<br>
+        </font></i></caption> <tbody>
+          <tr>
+            <td style="text-align: center;">&nbsp;7&nbsp; <br>
+            </td>
+            <td style="text-align: center;">&nbsp;1&nbsp;<br>
+            </td>
+            <td style="text-align: center;">&nbsp;2 <br>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">5 </td>
+            <td style="text-align: center;">&nbsp; </td>
+            <td style="text-align: center;">9 </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">8 </td>
+            <td style="text-align: center; color: rgb(204, 0, 0);">3</td>
+            <td style="text-align: center;">6</td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>goes to <br>
+      </td>
+      <td style="vertical-align: top;"><font color="#000000">
+      <table border="2">
+        <caption valign="bottom" align="bottom"><i><font size="-1">9
+inversions<br>
+        </font></i></caption> <tbody>
+          <tr>
+            <td style="text-align: center;">&nbsp;7 <br>
+            </td>
+            <td style="text-align: center;">&nbsp;1 <br>
+            </td>
+            <td style="text-align: center;">&nbsp;2 <br>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">5 </td>
+            <td style="text-align: center; color: rgb(204, 0, 0);">3<br>
+            </td>
+            <td style="text-align: center;">9 </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">8 </td>
+            <td style="text-align: center;"><br>
+            </td>
+            <td style="text-align: center;">6</td>
+          </tr>
+        </tbody>
+      </table>
+      </font></td>
+    </tr>
+  </tbody>
+</table>
+</font></p>
+<span style="color: rgb(51, 51, 255);">Proof of fact 1:</span><br>
+<ul>
+  <li>Moving a tile left or right does not change the number of
+inversions, and therefore doesn't change its polarity.</li>
+  <li>Moving a tile up or down does change the number of inversions.
+The tile moves past an even number of other tiles (which is the width
+of the board, minus 1). So the number of inversions changes by&nbsp; <span
+ class="b">&plusmn;1</span><span class="b">&plusmn;1</span><span
+ class="b">&plusmn;1</span><span class="b">&plusmn;1...</span><span
+ class="b">&plusmn;1, an even number of times. This is even.</span></li>
+</ul>
+<font color="#000000"><br>
+For a grid with an even width, the situation is similar.<br>
+<br>
+</font><big><big><span style="color: rgb(204, 0, 0);">Fact 2: </span><span
+ style="color: rgb(51, 51, 255);">For a grid of even width, the
+following is invariant:&nbsp; (#inversions even)&nbsp; </span><code
+ style="color: rgb(51, 51, 255);">== </code><span
+ style="color: rgb(51, 51, 255);">(blank on odd row from bottom)</span><span
+ style="font-family: monospace; color: rgb(51, 51, 255);">.</span></big></big><code></code><br>
+<br>
+Example<font color="#000000">: consider the move below.</font><font
+ color="#000000"> The number of inversions on the left is 49, and the
+blank is on an even row from the bottom. So the value of the invariant
+is "false == false", which is true. The number of inversions on the
+right is 48, because the 11 has lost two inversions, but the 14 has
+gained one. The blank is on an odd row from the bottom. So the value of
+the invariant is "true==true", which is still true.</font><br>
+<p><font color="#000000">
+<table align="center" cellpadding="5">
+  <tbody>
+    <tr>
+      <td>
+      <table border="2">
+        <caption valign="bottom" align="bottom"><i><font size="-1"><br>
+&nbsp;
+49 inversions<br>
+blank on even row from bot<br>
+        </font></i></caption> <tbody>
+          <tr>
+            <td style="text-align: center;">12 <br>
+            </td>
+            <td style="text-align: center;">1 </td>
+            <td style="text-align: center;">10</td>
+            <td style="text-align: center;">2 </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">7 </td>
+            <td style="text-align: center; color: rgb(204, 0, 0);">11</td>
+            <td style="text-align: center;">4 </td>
+            <td style="text-align: center;">14</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">5 </td>
+            <td style="text-align: center;">&nbsp; </td>
+            <td style="text-align: center;">9 </td>
+            <td style="text-align: center;">15</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">8 </td>
+            <td style="text-align: center;">13</td>
+            <td style="text-align: center;">6</td>
+            <td style="text-align: center;">3 </td>
+          </tr>
+        </tbody>
+      </table>
+      </td>
+      <td>goes to <br>
+      </td>
+      <td style="vertical-align: top;"><font color="#000000">
+      <table border="2">
+        <caption valign="bottom" align="bottom"><i><font size="-1"><br>
+&nbsp;
+48 inversions<br>
+blank on odd row from bot<br>
+        </font></i></caption> <tbody>
+          <tr>
+            <td style="text-align: center;">12 <br>
+            </td>
+            <td style="text-align: center;">1 </td>
+            <td style="text-align: center;">10</td>
+            <td style="text-align: center;">2 </td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">7 </td>
+            <td style="text-align: center;"><br>
+            </td>
+            <td style="text-align: center;">4 </td>
+            <td style="text-align: center;">14</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">5 </td>
+            <td style="text-align: center;">&nbsp;<span
+ style="color: rgb(204, 0, 0);">11</span> </td>
+            <td style="text-align: center;">9 </td>
+            <td style="text-align: center;">15</td>
+          </tr>
+          <tr>
+            <td style="text-align: center;">8 </td>
+            <td style="text-align: center;">13</td>
+            <td style="text-align: center;">6</td>
+            <td style="text-align: center;">3 </td>
+          </tr>
+        </tbody>
+      </table>
+      </font></td>
+    </tr>
+  </tbody>
+</table>
+</font></p>
+<span style="font-weight: bold;"><br>
+</span><span style="color: rgb(51, 51, 255);">Proof of fact 2:</span><br>
+<ul>
+  <li>Moving a tile left or right does not change the number of
+inversions and does not change the row of the blank</li>
+  <li>Moving a tile up or down does change the number of inversions.
+The tile
+moves past an odd number of other tiles (which is the width of the
+board, minus 1). So the number of inversions changes by&nbsp; <span
+ class="b">&plusmn;1</span><span class="b">&plusmn;1</span><span
+ class="b">&plusmn;1</span><span class="b">&plusmn;1...</span><span
+ class="b">&plusmn;1, an odd number of times. This is odd. The row of
+the blank also changes, from odd to even, or from even to odd. So both
+halves of the invariant changes. So its value is preserved.</span></li>
+</ul>
+<span class="b"><br>
+With these two facts, we can easily prove the following:<br>
+<br>
+</span><big><big><span style="color: rgb(204, 0, 0);">Fact 3:</span></big></big><big><big><span
+ style="color: rgb(204, 0, 0);"> </span><span
+ style="color: rgb(51, 51, 255);"><br>
+</span></big></big>
+<ul>
+  <li><big><big><span style="color: rgb(51, 51, 255);">If the width is
+odd, then every solvable state has an even number of inversions.</span></big></big></li>
+  <li><big><big><span style="color: rgb(51, 51, 255);">If the width is
+even, then every solvable state has </span></big></big></li>
+  <ul>
+    <li><big><big><span style="color: rgb(51, 51, 255);">an even number
+of inversions if the blank is on an odd numbered row counting from the
+bottom;</span></big></big></li>
+    <li><big><big><span style="color: rgb(51, 51, 255);">an odd number
+of inversions if the blank is on an even numbered row counting from the
+bottom;</span></big></big></li>
+  </ul>
+</ul>
+<span style="color: rgb(51, 51, 255);">Proof of fact 3:</span><br>
+<ul>
+  <li>The initial (solved) state has those properties;</li>
+  <li>Those properties are preserved by every legal move</li>
+  <li>Any solvable state can be reached from the initial state by some
+sequence of legal moves.</li>
+</ul>
+Fact 3 is "one half" of the formula.<br>
+<br>
+<h1>So you have shown that all solvable states have the stated
+property. But could there be some unsolvable states that have it too?<br>
+</h1>
+Good question! But the answer is no. We can show that:<br>
+<br>
+<big><big><span style="color: rgb(204, 0, 0);">Fact 4:</span></big></big><big><big><span
+ style="color: rgb(204, 0, 0);"> (the converse of fact 3)</span><span
+ style="color: rgb(51, 51, 255);"></span></big></big><big><big><span
+ style="color: rgb(51, 51, 255);"><br>
+If a state is such that</span></big></big>
+<ul>
+  <li><big><big><span style="color: rgb(51, 51, 255);">If the width is
+odd, then the state has an even number of inversions.</span></big></big></li>
+  <li><big><big><span style="color: rgb(51, 51, 255);">If the width is
+even and the</span></big></big><big><big><span
+ style="color: rgb(51, 51, 255);"> blank is on an odd numbered row
+counting from the bottom, then the state has an even number of
+inversions</span></big></big></li>
+  <li><big><big><span style="color: rgb(51, 51, 255);">If the width is
+even and the</span></big></big><big><big><span
+ style="color: rgb(51, 51, 255);"> blank is on an even numbered row
+counting from the bottom, then the state has an odd number of inversions</span></big></big></li>
+</ul>
+<br>
+<big><big><span style="color: rgb(51, 51, 255);">Then the puzzle is
+solvable from that state.<br>
+</span></big></big><br>
+<br>
+<span style="color: rgb(51, 51, 255);">Proof of fact 4:<br>
+</span>To prove this, you have essentially to show how to solve the
+puzzle. That is what we do for the remainder of this page. The
+heuristics we develop will be useful if you decide to implement the
+automatic solution generator.<br>
+<br>
+<h1>How to solve the puzzle<br>
+</h1>
+There are many ways which are not optimal, and you probably have your
+own. Here's mine.<br>
+<br>
+<div style="margin-left: 40px; color: rgb(204, 51, 204);"><big>Get the
+1 in the right place. Then get the 2 in the right place. Continue in
+this way until everything is in the right place.</big><br>
+</div>
+<br>
+Sometimes you have to temporarily undo some of your past achievements,
+to make room for your current task.<br>
+<ol>
+  <li>You can always get the blank where you want it, by temporarily
+moving stuff out of the way. ((picture))</li>
+  <li>You can always rotate any triplet, e.g., make abc into cab or
+bca, if you have some room above or below. Here's how:((picture))</li>
+  <li>You can insert a tile into a nearly complete row. Here's
+how.((picture))</li>
+</ol>
+By combining moves like these ones, you can solve any puzzle right down
+to the last line. You can rotate the last line until it is nearly
+right. If the puzzle is solvable, you can solve it completely.<br>
+<br>
+<h1>But that takes too many moves. Can't you tell me how to solve it in
+a minimum number of moves? What is the minimum number of moves for a
+given configuration, anyway?<br>
+</h1>
+<font color="#000000">More good questions. Some of the answers are
+given on Kevin Gong's web page.</font><font color="#000000"> Try <a
+ href="http://kevingong.com/Math/SixteenPuzzle.html">http://kevingong.com/Math/SixteenPuzzle.html</a>.
+My proofs are based on his, but why does he use all that dreadful
+notation?</font><br>
+<font color="#000000"><br>
+Page written by Mark Ryan
+<br>
+Page maintained by <a href="http://www.cs.bham.ac.uk/%7Emdr/">Mark Ryan</a><br>
+<!-- hhmts start --><!-- hhmts end --> Last modified: 26 November 2004 </font>
+</body>
+</html>
