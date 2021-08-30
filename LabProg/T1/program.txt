@@ -1,0 +1,14 @@
+ler  (  k);
+p= 6 + k;
+if   t   goto L1  ;
+p = p/     1;
+escrever   (   p);
+goto    L2;
+label L1;
+p = 2/0;
+escrever(p);
+goto L3;
+label L2;
+goto L1;
+label L3;
+quit;
